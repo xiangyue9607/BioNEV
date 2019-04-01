@@ -1,0 +1,32 @@
+label_index	label_name
+0	Disease or Syndrome
+1	Finding
+2	Pharmacologic Substance
+3	Organic Chemical
+4	Neoplastic Process
+5	Sign or Symptom
+6	Amino Acid, Peptide, or Protein
+7	Pathologic Function
+8	Clinical Drug
+9	Injury or Poisoning
+10	Immunologic Factor
+11	Congenital Abnormality
+12	Mental or Behavioral Dysfunction
+13	Biologically Active Substance
+14	Anatomical Abnormality
+15	Biomedical or Dental Material
+16	Hormone
+17	Acquired Abnormality
+18	Antibiotic
+19	Inorganic Chemical
+20	Enzyme
+21	Indicator, Reagent, or Diagnostic Aid
+22	Hazardous or Poisonous Substance
+23	Nucleic Acid, Nucleoside, or Nucleotide
+24	Cell or Molecular Dysfunction
+25	Vitamin
+26	Element, Ion, or Isotope
+27	Receptor
+28	Food
+29	Chemical Viewed Structurally
+30	Laboratory or Test Result
