@@ -71,7 +71,7 @@ def _embedding_training(args, G_=None, seed=0):
     elif args.method == 'SVD':
         SVD_embedding(G_, args.output, size=args.dimensions)
     else:
-        if args.method == 'Laplician':
+        if args.method == 'Laplacian':
             model = lap.LaplacianEigenmaps(G_, rep_size=args.dimensions)
 
         elif args.method == 'GF':

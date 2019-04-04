@@ -99,6 +99,7 @@ def generate_neg_edges(original_graph, testing_edges_num, seed=0):
 def load_embedding(embedding_file_name, node_list=None):
     with open(embedding_file_name) as f:
         node_num, _ = f.readline().split()
+        print('Nodes with embedding: %s'%node_num)
         embedding_look_up = {}
         if node_list:
             for line in f:
@@ -136,6 +137,7 @@ def read_node_labels(filename):
         node_list.append(vec[0])
         labels.append(vec[1:])
     fin.close()
+    print('Nodes with labels: %s'%len(node_list))
     return node_list, labels
 
 
