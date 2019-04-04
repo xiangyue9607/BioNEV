@@ -1,4 +1,4 @@
-# Graph Embedding on Biomedical Networks
+# BioNEV (Biomedical Network Embedding Evaluation)
 
 ## 1. Introduction
 This repository contains source code and dataset for paper "Graph Embedding on Biomedical Networks: Methods, Applications, and Evaluations". This works aims to introduce recent advanced embedding techniques into Biomedical Informatics community. 
