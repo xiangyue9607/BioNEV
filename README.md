@@ -65,7 +65,7 @@ To ensure different source code could run successfully in our framework, we modi
   - --lr, learning rate for gradient descent in Graph Factorization. The default is 0.01.
 
 - Random Walk-based methods:
-  - --number of walks, the number of random walks to start at each node.
+  - --number-walks, the number of random walks to start at each node.
   - --walk-length, the length of the random walk started at each node.
   - --window-size, window size of node sequence. 
   - --p, --q, two parameters that control how fast the walk explores and leaves the neighborhood of starting node. The default values of p, q are 1.0.
