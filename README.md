@@ -1,13 +1,12 @@
 # BioNEV (Biomedical Network Embedding Evaluation)
 
 ## 1. Introduction
-This repository contains source code and dataset for paper "Graph Embedding on Biomedical Networks: Methods, Applications, and Evaluations". This works aims to introduce recent advanced embedding techniques into Biomedical Informatics community. 
-We compile 5 benchmark datasets for 4 medical prediction tasks (see paper for details) and use them to evaluate 11 representative graph embedding methods selected from different categories:
+This repository contains source code and datasets for paper "Graph Embedding on Biomedical Networks: Methods, Applications, and Evaluations" (under review). This work aims to systematically evaluate recent advanced graph embedding techniques on biomedical tasks. We compile 5 benchmark datasets for 4 biomedical prediction tasks (see paper for details) and use them to evaluate 11 representative graph embedding methods selected from different categories:
 - 5 matrix factorization-based: Laplacian Eigenmap, SVD, Graph Factorization, HOPE, GraRep
 - 3 random walk-based: DeepWalk, node2vec, struc2vec
 - 3 neural network-based: LINE, SDNE, GAE
 
-The code could also be applied to open-domain graph (e.g., social network, citation network) to evaluate the embedding quality in link prediction and node classfication.
+The code can also be applied to graphs in other domains (e.g., social networks, citation networks). More experimental details can be found in **[Supplementary Materials]**(Supplementary Materials.pdf).
 ## 2. Dataset
 Datasets used in the paper:
 
@@ -95,7 +94,11 @@ python src/main.py --input ./data/Clin_Term_COOC/Clin_Term_COOC.edgelist --label
 ```
 
 ## 4. Citation
-Please kindly cite the following paper if you use the code or the dataset in this repo:
+Since the paper is under review, please kindly cite the repo directly if you use the code or the datasets in this repo:
 ```
-
+@misc{BioNEV,
+ author = {Xiang Yue, Zhen Wang, Jingong Huang, Srinivasan Parthasarathy, Seyed Soheil Moosavinasab, Yungui Huang, Simon Lin, Wen Zhang,Ping Zhang, and Huan Sun},
+ title = {BioNEV: Biomedical Network Embedding Evaluation},
+ url = {https://github.com/xiangyue9607/BioNEV},
+}
 ```
