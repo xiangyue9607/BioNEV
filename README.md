@@ -6,7 +6,7 @@ This repository contains source code and datasets for paper "Graph Embedding on 
 - 3 random walk-based: DeepWalk, node2vec, struc2vec
 - 3 neural network-based: LINE, SDNE, GAE
 
-The code can also be applied to graphs in other domains (e.g., social networks, citation networks). More experimental details can be found in [Supplementary Materials](Supplementary Materials.pdf).
+The code can also be applied to graphs in other domains (e.g., social networks, citation networks). More experimental details can be found in [**Supplementary Materials**](Supplementary%20Materials.pdf).
 ## 2. Dataset
 Datasets used in the paper:
 
