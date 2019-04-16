@@ -6,7 +6,7 @@ This repository contains source code and datasets for paper "Graph Embedding on 
 - 3 random walk-based: DeepWalk, node2vec, struc2vec
 - 3 neural network-based: LINE, SDNE, GAE
 
-The code can also be applied to graphs in other domains (e.g., social networks, citation networks). More experimental details can be found in **[Supplementary Materials]**(Supplementary Materials.pdf).
+The code can also be applied to graphs in other domains (e.g., social networks, citation networks). More experimental details can be found in [**Supplementary Materials**](./Supplementary Materials.pdf).
 ## 2. Dataset
 Datasets used in the paper:
 
@@ -97,7 +97,7 @@ python src/main.py --input ./data/Clin_Term_COOC/Clin_Term_COOC.edgelist --label
 Since the paper is under review, please kindly cite the repo directly if you use the code or the datasets in this repo:
 ```
 @misc{BioNEV,
- author = {Xiang Yue, Zhen Wang, Jingong Huang, Srinivasan Parthasarathy, Seyed Soheil Moosavinasab, Yungui Huang, Simon Lin, Wen Zhang,Ping Zhang, and Huan Sun},
+ author = {Yue, Xiang and Wang, Zhen and Huang, Jingong and Parthasarathy, Srinivasan and Moosavinasab, Soheil and Huang, Yungui and Lin, M. Simon and Zhang, Wen and Zhang, Ping and Sun, Huan},
  title = {BioNEV: Biomedical Network Embedding Evaluation},
  url = {https://github.com/xiangyue9607/BioNEV},
 }
