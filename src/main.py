@@ -18,7 +18,7 @@ def parse_args():
         'node-classification'], default='none',
                         help='Choose to evaluate the embedding quality based on a specific prediction task. '
                              'None represents no evaluation, and only run for training embedding.')
-    parser.add_argument('--testing-ratio', default=0.2, type=float,
+    parser.add_argument('--testingratio', default=0.2, type=float,
                         help='Testing set ratio for prediction tasks.'
                              'In link prediction, it splits all the known edges; '
                              'in node classification, it splits all the labeled nodes.')
@@ -99,6 +99,7 @@ def parse_args():
     parser.add_argument('--gae_model_selection', default='gcn_ae', type=str,
                         help='gae model selection: gcn_ae or gcn_vae')
     parser.add_argument('--eval-result-file', help='save evaluation performance')
+    parser.add_argument('--seed',default=0, type=int,  help='seed value')
     args = parser.parse_args()
 
     return args
@@ -110,7 +111,7 @@ def main(args):
     print('#' * 70)
 
     if args.task == 'link-prediction':
-        G, G_train, testing_pos_edges, train_graph_filename = split_train_test_graph(args.input, weighted=args.weighted)
+        G, G_train, testing_pos_edges, train_graph_filename = split_train_test_graph(args.input, args.seed, weighted=args.weighted)
         time1 = time.time()
         embedding_training(args, train_graph_filename)
         embed_train_time = time.time() - time1
@@ -118,7 +119,7 @@ def main(args):
         embedding_look_up = load_embedding(args.output)
         time1 = time.time()
         print('Begin evaluation...')
-        result = LinkPrediction(embedding_look_up, G, G_train, testing_pos_edges)
+        result = LinkPrediction(embedding_look_up, G, G_train, testing_pos_edges,args.seed)
         eval_time = time.time() - time1
         print('Prediction Task Time: %.2f s' % eval_time)
         os.remove(train_graph_filename)
@@ -133,7 +134,7 @@ def main(args):
             embedding_look_up = load_embedding(args.output, node_list)
             time1 = time.time()
             print('Begin evaluation...')
-            result = NodeClassification(embedding_look_up, node_list, labels)
+            result = NodeClassification(embedding_look_up, node_list, labels, args.testingratio, args.seed)
             eval_time = time.time() - time1
             print('Prediction Task Time: %.2f s' % eval_time)
         else:
@@ -166,7 +167,8 @@ def main(args):
 
 
 if __name__ == "__main__":
-    seed = 0
+    args=parse_args()
+    seed = args.seed
     random.seed(seed)
     np.random.seed(seed)
     main(parse_args())

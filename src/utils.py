@@ -47,7 +47,8 @@ def read_for_SVD(filename, weighted=False):
     return G
 
 
-def split_train_test_graph(input_edgelist, testing_ratio=0.2, weighted=False, seed=0):
+def split_train_test_graph(input_edgelist, seed, testing_ratio=0.2, weighted=False):
+    
     if (weighted):
         G = nx.read_weighted_edgelist(input_edgelist)
     else:
@@ -83,8 +84,9 @@ def split_train_test_graph(input_edgelist, testing_ratio=0.2, weighted=False, se
     return G, G_train, testing_pos_edges, train_graph_filename
 
 
-def generate_neg_edges(original_graph, testing_edges_num, seed=0):
+def generate_neg_edges(original_graph, testing_edges_num, seed):
     L = list(original_graph.nodes())
+
     # create a complete graph
     G = nx.Graph()
     G.add_nodes_from(L)
@@ -110,6 +112,7 @@ def load_embedding(embedding_file_name, node_list=None):
                     emb = emb / np.linalg.norm(emb)
                     emb[np.isnan(emb)] = 0
                     embedding_look_up[node_id] = list(emb)
+	    
             assert len(node_list) == len(embedding_look_up)
         else:
             for line in f:
@@ -120,6 +123,7 @@ def load_embedding(embedding_file_name, node_list=None):
                 emb = emb / np.linalg.norm(emb)
                 emb[np.isnan(emb)] = 0
                 embedding_look_up[node_id] = list(emb)
+	    
             assert int(node_num) == len(embedding_look_up)
         f.close()
         return embedding_look_up

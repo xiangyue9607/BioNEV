@@ -10,14 +10,15 @@ from sklearn.linear_model import LogisticRegression
 import numpy as np
 
 
-def LinkPrediction(embedding_look_up, original_graph, train_graph, test_pos_edges, seed=0):
+def LinkPrediction(embedding_look_up, original_graph, train_graph, test_pos_edges, seed):
     random.seed(seed)
-    train_neg_edges = generate_neg_edges(original_graph, len(train_graph.edges()))
+
+    train_neg_edges = generate_neg_edges(original_graph, len(train_graph.edges()), seed)
 
     # create a auxiliary graph to ensure that testing negative edges will not used in training
     G_aux = copy.deepcopy(original_graph)
     G_aux.add_edges_from(train_neg_edges)
-    test_neg_edges = generate_neg_edges(G_aux, len(test_pos_edges))
+    test_neg_edges = generate_neg_edges(G_aux, len(test_pos_edges), seed)
 
     # construct X_train, y_train, X_test, y_test
     X_train = []
@@ -78,7 +79,8 @@ def LinkPrediction(embedding_look_up, original_graph, train_graph, test_pos_edge
     return (AUC, ACC, F1)
 
 
-def NodeClassification(embedding_look_up, node_list, labels, testing_ratio=0.2, seed=0):
+def NodeClassification(embedding_look_up, node_list, labels, testing_ratio, seed):
+
     X_train, y_train, X_test, y_test = split_train_test_classify(embedding_look_up, node_list, labels,
                                                                  testing_ratio=testing_ratio)
     binarizer = MultiLabelBinarizer(sparse_output=True)

@@ -27,7 +27,9 @@ def embedding_training(args, train_graph_filename):
     return
 
 
-def _embedding_training(args, G_=None, seed=0):
+def _embedding_training(args, G_=None):
+    seed=args.seed
+
     if args.method == 'struc2vec':
         logging.basicConfig(filename='./src/struc2vec/struc2vec.log', filemode='w', level=logging.DEBUG,
                             format='%(asctime)s %(message)s')
