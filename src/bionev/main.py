@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import datetime
+import getpass
 import json
 import os
 import random
@@ -160,6 +162,8 @@ def main(args):
             task=args.task,
             method=args.method,
             dimension=args.dimensions,
+            user=getpass.getuser(),
+            date=datetime.datetime.now().strftime('%Y-%m-%d-%H%M%S'),
         )
 
         if args.task == 'link-prediction':
