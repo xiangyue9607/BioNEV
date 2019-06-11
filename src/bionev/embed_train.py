@@ -105,6 +105,9 @@ def _embedding_training(args, G_=None):
             model = sdne.SDNE(G_, encoder_layer_list=encoder_layer_list,
                               alpha=args.alpha, beta=args.beta, nu1=args.nu1, nu2=args.nu2,
                               batch_size=args.bs, epoch=args.epochs, learning_rate=args.lr)
+        else:
+            raise ValueError(f'Invalid method: {args.method}')
+
         print("Saving embeddings...")
         model.save_embeddings(args.output)
 
