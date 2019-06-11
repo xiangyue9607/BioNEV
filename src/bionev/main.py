@@ -133,22 +133,20 @@ def main(args):
         print('Prediction Task Time: %.2f s' % eval_time)
         os.remove(train_graph_filename)
     elif args.task == 'node-classification':
-        if (args.label_file):
-            node_list, labels = read_node_labels(args.label_file)
-            train_graph_filename = args.input
-            time1 = time.time()
-            embedding_training(args, train_graph_filename)
-            embed_train_time = time.time() - time1
-            print('Embedding Learning Time: %.2f s' % embed_train_time)
-            embedding_look_up = load_embedding(args.output, node_list)
-            time1 = time.time()
-            print('Begin evaluation...')
-            result = NodeClassification(embedding_look_up, node_list, labels, args.testingratio, args.seed)
-            eval_time = time.time() - time1
-            print('Prediction Task Time: %.2f s' % eval_time)
-        else:
-            print("No input label file. Exit.")
-            exit(1)
+        if not args.label_file:
+            raise ValueError("No input label file. Exit.")
+        node_list, labels = read_node_labels(args.label_file)
+        train_graph_filename = args.input
+        time1 = time.time()
+        embedding_training(args, train_graph_filename)
+        embed_train_time = time.time() - time1
+        print('Embedding Learning Time: %.2f s' % embed_train_time)
+        embedding_look_up = load_embedding(args.output, node_list)
+        time1 = time.time()
+        print('Begin evaluation...')
+        result = NodeClassification(embedding_look_up, node_list, labels, args.testingratio, args.seed)
+        eval_time = time.time() - time1
+        print('Prediction Task Time: %.2f s' % eval_time)
     else:
         train_graph_filename = args.input
         time1 = time.time()
