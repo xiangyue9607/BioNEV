@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import copy
-import random
-
-import numpy as np
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
+from sklearn.metrics import accuracy_score, average_precision_score, f1_score, matthews_corrcoef, roc_auc_score
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.preprocessing import MultiLabelBinarizer
 
@@ -72,13 +68,15 @@ def LinkPrediction(embedding_look_up, original_graph, train_graph, test_pos_edge
     clf1.fit(X_train, y_train)
     y_pred_proba = clf1.predict_proba(X_test)[:, 1]
     y_pred = clf1.predict(X_test)
-    AUC = roc_auc_score(y_test, y_pred_proba)
-    ACC = accuracy_score(y_test, y_pred)
-    F1 = f1_score(y_test, y_pred)
-    print('#' * 10 + 'Link Prediction Performance' + '#' * 10)
-    print('AUC: %.4f, ACC: %.4f, F1: %.4f' % (AUC, ACC, F1))
+    auc_roc = roc_auc_score(y_test, y_pred_proba)
+    auc_pr = average_precision_score(y_test, y_pred_proba)
+    accuracy = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+    mcc = matthews_corrcoef(y_test, y_pred)
+    print('#' * 9 + ' Link Prediction Performance ' + '#' * 9)
+    print(f'AUC-ROC: {auc_roc:.3f}, AUC-PR: {auc_pr:.3f}, Accuracy: {accuracy:.3f}, F1: {f1:.3f}, MCC: {mcc:.3f}')
     print('#' * 50)
-    return (AUC, ACC, F1)
+    return auc_roc, auc_pr, accuracy, f1, mcc
 
 
 def NodeClassification(embedding_look_up, node_list, labels, testing_ratio, seed):
@@ -97,11 +95,12 @@ def NodeClassification(embedding_look_up, node_list, labels, testing_ratio, seed
     ## small trick : we assume that we know how many label to predict
     y_pred = get_y_pred(y_test, y_pred_prob)
 
-    accuracy = accuracy_score(y_test, y_pred, )
+    accuracy = accuracy_score(y_test, y_pred)
+    mcc = matthews_corrcoef(y_test, y_pred)
     micro_f1 = f1_score(y_test, y_pred, average="micro")
     macro_f1 = f1_score(y_test, y_pred, average="macro")
 
-    print('#' * 10 + 'Node Classification Performance' + '#' * 10)
-    print('ACC: %.4f, Micro-F1: %.4f, Macro-F1: %.4f' % (accuracy, micro_f1, macro_f1))
+    print('#' * 9 + ' Node Classification Performance ' + '#' * 9)
+    print(f'Accuracy: {accuracy:.3f}, MCC: {mcc:.3f}, Micro-F1: {micro_f1:.3f}, Macro-F1: {macro_f1:.3f}')
     print('#' * 50)
-    return (accuracy, micro_f1, macro_f1)
+    return accuracy, mcc, micro_f1, macro_f1

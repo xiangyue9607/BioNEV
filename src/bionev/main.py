@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 
+import json
 import os
+import random
 import time
 from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser
 
-from bionev.embed_train import *
-from bionev.evaluation import *
+import numpy as np
+
+from bionev.embed_train import embedding_training, load_embedding, read_node_labels, split_train_test_graph
+from bionev.evaluation import LinkPrediction, NodeClassification
 
 
 def parse_args():
@@ -151,22 +155,33 @@ def main(args):
         print('Embedding Learning Time: %.2f s' % embed_train_time)
 
     if args.eval_result_file and result:
+        _results = dict(
+            input=args.input,
+            task=args.task,
+            method=args.method,
+            dimension=args.dimensions,
+        )
+
+        if args.task == 'link-prediction':
+            auc_roc, auc_pr, accuracy, f1, mcc = result
+            _results['results'] = dict(
+                auc_roc=auc_roc,
+                auc_pr=auc_pr,
+                accuracy=accuracy,
+                f1=f1,
+                mcc=mcc,
+            )
+        else:
+            accuracy, mcc, f1_micro, f1_macro = result
+            _results['results'] = dict(
+                accuracy=accuracy,
+                mcc=mcc,
+                f1_micro=f1_micro,
+                f1_macro=f1_macro,
+            )
+
         with open(args.eval_result_file, 'a+') as wf:
-            wf.write('#' * 60 + '\n')
-            wf.write('Input Graph: %s\n' % args.input)
-            wf.write('Prediction Task: %s\n' % args.task)
-            wf.write('Embedding Method: %s\n' % args.method)
-            wf.write('Embedding Dimension: %s\n' % args.dimensions)
-            if args.task == 'link-prediction':
-                AUC, ACC, F1 = result
-                wf.write('Performance: AUC: %.4f, ACC: %.4f, F1: %.4f\n' % (AUC, ACC, F1))
-                wf.write('#' * 60)
-            else:
-                accuracy, micro_f1, macro_f1 = result
-                wf.write('Performance: ACC: %.4f, Micro-F1: %.4f, Macro-F1: %.4f\n' % (accuracy, micro_f1, macro_f1))
-                wf.write('#' * 60)
-            wf.write('\n\n')
-            wf.close()
+            print(json.dumps(_results, sort_keys=True), file=wf)
 
 
 def more_main():
@@ -175,6 +190,7 @@ def more_main():
     random.seed(seed)
     np.random.seed(seed)
     main(parse_args())
+
 
 if __name__ == "__main__":
     more_main()
