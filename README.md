@@ -31,19 +31,21 @@ The graph embedding learning for Laplician Eigenmap, Graph Factorization, HOPE, 
 The code of [struc2vec](https://github.com/leoribeiro/struc2vec) and [GAE](https://github.com/tkipf/gae) is from their authors. 
 To ensure different source code could run successfully in our framework, we modify part of their source code.
  
+#### Installation
 
-#### Requirements:
+Use the following command to install directly from GitHub;
 
-```pip install -r requirements.txt```
+```bash
+$ pip install git+https://github.com/xiangyue9607/BioNEV.git
+```
 
-- Python==3.6
-- numpy==1.14.0
-- networkx==2.0
-- scipy==0.19.1
-- tensorflow==1.10.0
-- gensim==3.0.1
-- scikit-learn==0.19.0
-- tqdm==4.28.1
+Alternatively, use the following commands to install the latest code in development mode (using `-e`):
+
+```bash
+$ git clone https://github.com/xiangyue9607/BioNEV.git
+$ cd BioNEV
+$ pip install -e .
+```
 
 #### General Options
 - --input, input graph file. Only accepted edgelist format. 
@@ -86,11 +88,15 @@ To ensure different source code could run successfully in our framework, we modi
 #### Running example
 
 ```
-python src/main.py --input ./data/DrugBank_DDI/DrugBank_DDI.edgelist --output ./embeddings/DeepWalk_DrugBank_DDI.txt --method DeepWalk --task link-prediction --eval-result-file eval_result.txt
+bionev --input ./data/DrugBank_DDI/DrugBank_DDI.edgelist \
+       --output ./embeddings/DeepWalk_DrugBank_DDI.txt \
+       --method DeepWalk \
+       --task link-prediction \
+       --eval-result-file eval_result.txt
 ```
 
 ```
-python src/main.py --input ./data/Clin_Term_COOC/Clin_Term_COOC.edgelist --label-file ./data/Clin_Term_COOC/Clin_Term_COOC_labels.txt --output ./embeddings/LINE_COOC.txt --method LINE --task node-classification  --weighted True```
+bionev --input ./data/Clin_Term_COOC/Clin_Term_COOC.edgelist --label-file ./data/Clin_Term_COOC/Clin_Term_COOC_labels.txt --output ./embeddings/LINE_COOC.txt --method LINE --task node-classification  --weighted True```
 ```
 
 ## 4. Citation
