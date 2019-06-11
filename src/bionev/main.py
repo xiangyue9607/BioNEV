@@ -162,6 +162,7 @@ def main(args):
             dimension=args.dimensions,
             user=getpass.getuser(),
             date=datetime.datetime.now().strftime('%Y-%m-%d-%H%M%S'),
+            seed=args.seed,
         )
 
         if args.task == 'link-prediction':
