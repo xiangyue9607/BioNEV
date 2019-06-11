@@ -165,10 +165,12 @@ def main(args):
             wf.write('\n\n')
             wf.close()
 
-
-if __name__ == "__main__":
-    args=parse_args()
+def more_main():
+    args = parse_args()
     seed = args.seed
     random.seed(seed)
     np.random.seed(seed)
     main(parse_args())
+
+if __name__ == "__main__":
+    more_main()
