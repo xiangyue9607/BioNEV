@@ -1,5 +1,7 @@
-import tensorflow as tf
+# -*- coding: utf-8 -*-
+
 import numpy as np
+import tensorflow as tf
 
 __author__ = "Wang Binlu"
 __email__ = "wblmail@whu.edu.cn"

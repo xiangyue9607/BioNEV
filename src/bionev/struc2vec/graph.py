@@ -1,32 +1,17 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """Graph utilities."""
 
 import logging
-import sys
-import math
-from io import open
-from os import path
-from time import time
-from glob import glob
-from six.moves import range, zip, zip_longest
-from six import iterkeys
-from collections import defaultdict, Iterable
-from multiprocessing import cpu_count
-import random
-from random import shuffle
-from itertools import product, permutations
-import collections
-
+from collections import Iterable, defaultdict
 from concurrent.futures import ProcessPoolExecutor
-
-from multiprocessing import Pool
+from io import open
+from itertools import permutations
 from multiprocessing import cpu_count
+from time import time
 
-# novas importações
-import numpy as np
-import operator
+from six import iterkeys
+from six.moves import range, zip_longest
 
 
 class Graph(defaultdict):

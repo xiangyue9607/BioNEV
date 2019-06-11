@@ -1,7 +1,7 @@
-from __future__ import print_function
+# -*- coding: utf-8 -*-
+
 import numpy as np
 import tensorflow as tf
-import networkx as nx
 
 __author__ = "Wang Binlu"
 __email__ = "wblmail@whu.edu.cn"

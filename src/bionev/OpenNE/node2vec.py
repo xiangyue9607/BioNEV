@@ -1,6 +1,8 @@
-from __future__ import print_function
+# -*- coding: utf-8 -*-
+
 from gensim.models import Word2Vec
-from . import walker
+
+from bionev.OpenNE import walker
 
 
 class Node2vec(object):

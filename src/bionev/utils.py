@@ -1,10 +1,14 @@
-import OpenNE.graph as og
-import struc2vec.graph as sg
-import random
-import networkx as nx
-import itertools
-import numpy as np
+# -*- coding: utf-8 -*-
+
 import copy
+import itertools
+import random
+
+import networkx as nx
+import numpy as np
+
+import bionev.OpenNE.graph as og
+import bionev.struc2vec.graph as sg
 
 
 def read_for_OpenNE(filename, weighted=False):

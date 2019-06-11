@@ -1,15 +1,17 @@
-from OpenNE import line, grarep, sdne, lap, node2vec
-from OpenNE import gf, hope
+# -*- coding: utf-8 -*-
+
 import ast
-from struc2vec import struc2vec
+import logging
+import os
+
 from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
-import os
-from utils import *
-import time
-import logging
-from GAE.train_model import gae_model
-from SVD.model import SVD_embedding
+
+from bionev.GAE.train_model import gae_model
+from bionev.OpenNE import gf, grarep, hope, lap, line, node2vec, sdne
+from bionev.SVD.model import SVD_embedding
+from bionev.struc2vec import struc2vec
+from bionev.utils import *
 
 
 def embedding_training(args, train_graph_filename):

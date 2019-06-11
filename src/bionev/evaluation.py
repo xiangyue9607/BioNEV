@@ -1,13 +1,15 @@
-from utils import *
+# -*- coding: utf-8 -*-
+
 import copy
 import random
-from sklearn.multiclass import OneVsRestClassifier
-from sklearn.metrics import f1_score
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import roc_auc_score
-from sklearn.preprocessing import MultiLabelBinarizer
-from sklearn.linear_model import LogisticRegression
+
 import numpy as np
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.preprocessing import MultiLabelBinarizer
+
+from bionev.utils import *
 
 
 def LinkPrediction(embedding_look_up, original_graph, train_graph, test_pos_edges, seed):

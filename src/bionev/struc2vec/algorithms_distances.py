@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
-from collections import deque
-import numpy as np
+
 import math
-from fastdtw import fastdtw
-from concurrent.futures import ProcessPoolExecutor, as_completed
-from struc2vec.utils import *
 import os
+from collections import deque
+from concurrent.futures import ProcessPoolExecutor, as_completed
+
+import numpy as np
+from fastdtw import fastdtw
+
+from bionev.struc2vec.utils import *
 
 limiteDist = 20
 

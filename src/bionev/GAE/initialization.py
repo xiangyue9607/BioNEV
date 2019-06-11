@@ -1,5 +1,7 @@
-import tensorflow as tf
+# -*- coding: utf-8 -*-
+
 import numpy as np
+import tensorflow as tf
 
 
 def weight_variable_glorot(input_dim, output_dim, name=""):

@@ -1,5 +1,7 @@
-import numpy as np
+# -*- coding: utf-8 -*-
+
 import networkx as nx
+import numpy as np
 from scipy.sparse.linalg import eigsh
 
 __author__ = "Wang Binlu"

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from struc2vec.algorithms import *
-from struc2vec.algorithms_distances import *
+from bionev.struc2vec.algorithms import *
+from bionev.struc2vec.algorithms_distances import *
 
 
-class Graph():
+class Graph:
     def __init__(self, g, workers, is_directed=False, untilLayer=None):
 
         logging.info(" - Converting graph to dict...")

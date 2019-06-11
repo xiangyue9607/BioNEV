@@ -1,7 +1,8 @@
-from __future__ import print_function
+# -*- coding: utf-8 -*-
+
 import random
+
 import numpy as np
-import multiprocessing
 
 
 def deepwalk_walk_wrapper(class_instance, walk_length, start_node):

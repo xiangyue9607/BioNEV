@@ -1,8 +1,11 @@
-from evaluation import *
-from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
-from embed_train import *
+# -*- coding: utf-8 -*-
+
 import os
 import time
+from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser
+
+from bionev.embed_train import *
+from bionev.evaluation import *
 
 
 def parse_args():
@@ -164,6 +167,7 @@ def main(args):
                 wf.write('#' * 60)
             wf.write('\n\n')
             wf.close()
+
 
 def more_main():
     args = parse_args()

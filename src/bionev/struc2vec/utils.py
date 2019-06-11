@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-from time import time
-import logging, inspect
+
+import inspect
+import logging
+import os.path
 import pickle as pickle
 from itertools import islice
-import os.path
+from time import time
 
 dir_f = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 folder_pickles = dir_f + "/pickles/"

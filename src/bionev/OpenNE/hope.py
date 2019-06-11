@@ -1,11 +1,8 @@
+# -*- coding: utf-8 -*-
+
 import networkx as nx
 import numpy as np
-import scipy.io as sio
-import scipy.sparse as sp
 import scipy.sparse.linalg as lg
-from . import graph as g
-import tensorflow as tf
-from sklearn.preprocessing import normalize
 
 __author__ = "Alan WANG"
 __email__ = "alan1995wang@outlook.com"

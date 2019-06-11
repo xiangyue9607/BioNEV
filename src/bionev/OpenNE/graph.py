@@ -1,10 +1,10 @@
+# -*- coding: utf-8 -*-
+
 """Graph utilities."""
 
-# from time import time
 import networkx as nx
 
 import numpy as np
-import scipy.sparse as sp
 
 __author__ = "Zhang Zhengyan"
 __email__ = "zhangzhengyan14@mails.tsinghua.edu.cn"

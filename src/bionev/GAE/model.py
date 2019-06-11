@@ -1,5 +1,8 @@
-from GAE.layers import GraphConvolution, GraphConvolutionSparse, InnerProductDecoder
+# -*- coding: utf-8 -*-
+
 import tensorflow as tf
+
+from bionev.GAE.layers import GraphConvolution, GraphConvolutionSparse, InnerProductDecoder
 
 flags = tf.app.flags
 FLAGS = flags.FLAGS

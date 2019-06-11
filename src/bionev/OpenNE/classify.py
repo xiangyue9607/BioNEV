@@ -1,9 +1,9 @@
-from __future__ import print_function
+# -*- coding: utf-8 -*-
+
 import numpy
-from sklearn.multiclass import OneVsRestClassifier
 from sklearn.metrics import f1_score
+from sklearn.multiclass import OneVsRestClassifier
 from sklearn.preprocessing import MultiLabelBinarizer
-from time import time
 
 
 class TopKRanker(OneVsRestClassifier):

@@ -1,19 +1,18 @@
-# from __future__ import division
-# from __future__ import print_function
+# -*- coding: utf-8 -*-
+
 import time
-import os
-import pickle
+
+import numpy as np
+import scipy.sparse as sp
+import tensorflow as tf
+
+from bionev.GAE.model import GCNModelAE, GCNModelVAE
+from bionev.GAE.optimizer import OptimizerAE, OptimizerVAE
+from bionev.GAE.preprocessing import construct_feed_dict, preprocess_graph, sparse_to_tuple
+
 
 # # Train on CPU (hide GPU) due to memory constraints
 # os.environ['CUDA_VISIBLE_DEVICES'] = ""
-
-import tensorflow as tf
-import numpy as np
-import scipy.sparse as sp
-
-from GAE.optimizer import OptimizerAE, OptimizerVAE
-from GAE.model import GCNModelAE, GCNModelVAE
-from GAE.preprocessing import preprocess_graph, construct_feed_dict, sparse_to_tuple, mask_test_edges
 
 
 class gae_model(object):

@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
+
+import math
+import random
 from collections import deque
-import numpy as np
-import math, random
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
-from struc2vec.utils import *
+import numpy as np
+
+from bionev.struc2vec.utils import *
 
 
 def generate_parameters_random_walk(workers):

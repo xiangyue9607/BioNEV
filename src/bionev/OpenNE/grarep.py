@@ -1,8 +1,8 @@
-import math
+# -*- coding: utf-8 -*-
+
 import numpy as np
-from numpy import linalg as la
-from sklearn.preprocessing import normalize
 from scipy.sparse.linalg import svds
+from sklearn.preprocessing import normalize
 
 
 class GraRep(object):

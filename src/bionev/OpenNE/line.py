@@ -1,10 +1,13 @@
-from __future__ import print_function
-import random
+# -*- coding: utf-8 -*-
+
 import math
+import random
+
 import numpy as np
-from sklearn.linear_model import LogisticRegression
 import tensorflow as tf
-from .classify import Classifier, read_node_label
+from sklearn.linear_model import LogisticRegression
+
+from bionev.OpenNE.classify import Classifier, read_node_label
 
 
 class _LINE(object):

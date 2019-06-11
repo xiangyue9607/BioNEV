@@ -1,5 +1,8 @@
-from GAE.initialization import *
+# -*- coding: utf-8 -*-
+
 import tensorflow as tf
+
+from bionev.GAE.initialization import *
 
 # global unique layer ID dictionary for layer name assignment
 _LAYER_UIDS = {}
