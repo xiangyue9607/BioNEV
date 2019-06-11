@@ -68,7 +68,7 @@ def LinkPrediction(embedding_look_up, original_graph, train_graph, test_pos_edge
     X_test = np.array(X_test)
     y_test = np.array(y_test)
 
-    clf1 = LogisticRegression(random_state=seed)
+    clf1 = LogisticRegression(random_state=seed, solver='lbfgs')
     clf1.fit(X_train, y_train)
     y_pred_proba = clf1.predict_proba(X_test)[:, 1]
     y_pred = clf1.predict(X_test)
@@ -90,7 +90,7 @@ def NodeClassification(embedding_look_up, node_list, labels, testing_ratio, seed
     binarizer.fit(y_all)
     y_train = binarizer.transform(y_train).todense()
     y_test = binarizer.transform(y_test).todense()
-    model = OneVsRestClassifier(LogisticRegression(random_state=seed))
+    model = OneVsRestClassifier(LogisticRegression(random_state=seed, solver='lbfgs'))
     model.fit(X_train, y_train)
     y_pred_prob = model.predict_proba(X_test)
 
