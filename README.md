@@ -1,7 +1,7 @@
 # BioNEV (Biomedical Network Embedding Evaluation)
 
 ## 1. Introduction
-This repository contains source code and datasets for paper "Graph Embedding on Biomedical Networks: Methods, Applications, and Evaluations" (under review). This work aims to systematically evaluate recent advanced graph embedding techniques on biomedical tasks. We compile 5 benchmark datasets for 4 biomedical prediction tasks (see paper for details) and use them to evaluate 11 representative graph embedding methods selected from different categories:
+This repository contains source code and datasets for paper ["Graph Embedding on Biomedical Networks: Methods, Applications, and Evaluations"](https://arxiv.org/pdf/1906.05017.pdf) (under review). This work aims to systematically evaluate recent advanced graph embedding techniques on biomedical tasks. We compile 5 benchmark datasets for 4 biomedical prediction tasks (see paper for details) and use them to evaluate 11 representative graph embedding methods selected from different categories:
 - 5 matrix factorization-based: Laplacian Eigenmap, SVD, Graph Factorization, HOPE, GraRep
 - 3 random walk-based: DeepWalk, node2vec, struc2vec
 - 3 neural network-based: LINE, SDNE, GAE
@@ -96,15 +96,21 @@ bionev --input ./data/DrugBank_DDI/DrugBank_DDI.edgelist \
 ```
 
 ```
-bionev --input ./data/Clin_Term_COOC/Clin_Term_COOC.edgelist --label-file ./data/Clin_Term_COOC/Clin_Term_COOC_labels.txt --output ./embeddings/LINE_COOC.txt --method LINE --task node-classification  --weighted True```
+bionev --input ./data/Clin_Term_COOC/Clin_Term_COOC.edgelist \ 
+       --label-file ./data/Clin_Term_COOC/Clin_Term_COOC_labels.txt \
+       --output ./embeddings/LINE_COOC.txt \
+       --method LINE \
+       --task node-classification  \
+       --weighted True
 ```
 
 ## 4. Citation
-Since the paper is under review, please kindly cite the repo directly if you use the code or the datasets in this repo:
+Please kindly cite the repo directly if you use the code or the datasets in this repo:
 ```
-@misc{BioNEV,
- author = {Yue, Xiang and Wang, Zhen and Huang, Jingong and Parthasarathy, Srinivasan and Moosavinasab, Soheil and Huang, Yungui and Lin, M. Simon and Zhang, Wen and Zhang, Ping and Sun, Huan},
- title = {BioNEV: Biomedical Network Embedding Evaluation},
- url = {https://github.com/xiangyue9607/BioNEV},
+@article{yue2019graph,
+  title={Graph Embedding on Biomedical Networks: Methods, Applications, and Evaluations},
+  author={Yue, Xiang and Wang, Zhen and Huang, Jingong and Parthasarathy, Srinivasan and Moosavinasab, Soheil and Huang, Yungui and Lin, M. Simon and Zhang, Wen and Zhang, Ping and Sun, Huan},
+  journal={arXiv preprint arXiv:1906.05017},
+  year={2019}
 }
 ```
