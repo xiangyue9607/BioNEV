@@ -9,12 +9,15 @@ This repository contains source code and datasets for paper ["Graph Embedding on
 The code can also be applied to graphs in other domains (e.g., social networks, citation networks). More experimental details can be found in [**Supplementary Materials**](Supplementary%20Materials.pdf).
 ## 2. Dataset
 Datasets used in the paper:
-
+### Link Prediction
 - [CTD DDA](data/CTD_DDA) : a drug-disease association graph extracted from [Comparative Toxicogenomics Database](http://ctdbase.org/downloads/) 
 - [NDFRT DDA](data/NDFRT_DDA) : a drug-disease association graph extracted from [UMLS National Drug File](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT/)
 - [DrugBank DDi](data/DrugBank_DDI) : a drug-drug interaction graph extracted from [DrugBank database](https://www.drugbank.ca/)
 - [STRING PPI](data/STRING_PPI) : a protein-protein interaction graph extracted from [STRING database](https://string-db.org/)
+### Node Classification
 - [Clin Term COOC](data/Clin_Term_COOC) : a medical term-term co-occurrence graph from (Finlayson et al., 2014) [[source data]](https://datadryad.org//resource/doi:10.5061/dryad.jp917), [[paper]](https://doi.org/10.1038/sdata.2014.32) 
+- [node2vec PPI](data/node2vec_PPI): a PPI graph with functional annotations used in [node2vec](https://snap.stanford.edu/node2vec/) (Grover and Leskovec, 2016)
+- [Mashup PPI](data/Mashup_PPI): a experimental PPI graph with functional annotations used in [Mashup](http://cb.csail.mit.edu/cb/mashup/) (Cho et al., 2016)
 
 Statistics:
 
@@ -24,7 +27,9 @@ Statistics:
 |                     |    NDFRT DDA   | 13,545 |   56,515  |  0.06%  |    -    |
 |   Link Prediction   |  DrugBank DDI  |  2,191 |  242,027  |  10.08% |    -    |
 |                     |   STRING PPI   | 15,131 |  359,776  |  0.31%  |    -    |
-| Node Classification | Clin Term COOC | 48,651 | 1,659,249 |  0.14%  |    31   |
+|                     | Clin Term COOC | 48,651 | 1,659,249 |  0.14%  |    31   |
+| Node Classification |   node2vec PPI | 3,890  |   76,584  |  1.01%  |    50   |
+|                     |   Mashup PPI   | 16,143 |  300,181  |  0.23%  |    28   |
 
 ## 3. Code
 The graph embedding learning for Laplician Eigenmap, Graph Factorization, HOPE, GraRep, DeepWalk, node2vec, LINE, SDNE uses the code from [OpenNE](https://github.com/thunlp/OpenNE)
@@ -96,11 +101,11 @@ bionev --input ./data/DrugBank_DDI/DrugBank_DDI.edgelist \
 ```
 
 ```
-bionev --input ./data/Clin_Term_COOC/Clin_Term_COOC.edgelist \ 
+bionev --input ./data/Clin_Term_COOC/Clin_Term_COOC.edgelist \
        --label-file ./data/Clin_Term_COOC/Clin_Term_COOC_labels.txt \
        --output ./embeddings/LINE_COOC.txt \
        --method LINE \
-       --task node-classification  \
+       --task node-classification \
        --weighted True
 ```
 
