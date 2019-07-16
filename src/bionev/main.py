@@ -178,7 +178,6 @@ def main(args):
             accuracy, mcc, f1_micro, f1_macro = result
             _results['results'] = dict(
                 accuracy=accuracy,
-                mcc=mcc,
                 f1_micro=f1_micro,
                 f1_macro=f1_macro,
             )
