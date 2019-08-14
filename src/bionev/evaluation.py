@@ -82,7 +82,7 @@ def LinkPrediction(embedding_look_up, original_graph, train_graph, test_pos_edge
 def NodeClassification(embedding_look_up, node_list, labels, testing_ratio, seed):
 
     X_train, y_train, X_test, y_test = split_train_test_classify(embedding_look_up, node_list, labels,
-                                                                 testing_ratio=testing_ratio)
+                                                                 testing_ratio=testing_ratio,seed=seed)
     binarizer = MultiLabelBinarizer(sparse_output=True)
     y_all = np.append(y_train, y_test)
     binarizer.fit(y_all)

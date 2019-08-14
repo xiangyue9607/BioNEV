@@ -149,7 +149,7 @@ def read_node_labels(filename):
     return node_list, labels
 
 
-def split_train_test_classify(embedding_look_up, X, Y, testing_ratio=0.2, seed=0):
+def split_train_test_classify(embedding_look_up, X, Y, seed, testing_ratio=0.2):
     state = np.random.get_state()
     training_ratio = 1 - testing_ratio
     training_size = int(training_ratio * len(X))
