@@ -27,15 +27,14 @@ class gae_model(object):
         self.model_selection = args.gae_model_selection
         self.model = None
 
-    def save_embeddings(self, output):
+    def save_embeddings(self, output, node_list):
         self.feed_dict.update({self.placeholders['dropout']: 0})
         emb = self.sess.run(self.model.z_mean, feed_dict=self.feed_dict)
         print(emb.shape)
-        # drug_names = [x.strip() for x in open('/data/group_shared/biomedical_graph/drug_list.txt').readlines()]
         fout = open(output, 'w')
         fout.write("{} {}\n".format(emb.shape[0], emb.shape[1]))
         for idx in range(emb.shape[0]):
-            fout.write("{} {}\n".format(idx, ' '.join([str(x) for x in emb[idx, :]])))
+            fout.write("{} {}\n".format(node_list[idx], ' '.join([str(x) for x in emb[idx, :]])))
         fout.close()
 
     def train(self, adj):

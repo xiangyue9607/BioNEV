@@ -34,13 +34,11 @@ def read_for_gae(filename, weighted=False):
                     edgelist[idx, 2] > 0]
     else:
         edgelist = [(int(edgelist[idx, 0]), int(edgelist[idx, 1])) for idx in range(edgelist.shape[0])]
-    min_idx = min([x[0] for x in edgelist] + [x[1] for x in edgelist])
-    max_idx = max([x[0] for x in edgelist] + [x[1] for x in edgelist])
-    adj = nx.adjacency_matrix(nx.from_edgelist(edgelist), nodelist=list(range(min_idx, max_idx + 1)))
-    print(adj)
+    G=nx.from_edgelist(edgelist)
+    node_list=list(G.nodes)
+    adj = nx.adjacency_matrix(G, nodelist=node_list)
     print("Graph Loaded...")
-    print(adj.shape)
-    return adj
+    return (adj,node_list)
 
 
 def read_for_SVD(filename, weighted=False):
@@ -77,12 +75,6 @@ def split_train_test_graph(input_edgelist, seed, testing_ratio=0.2, weighted=Fal
     else:
         nx.write_edgelist(G_train, train_graph_filename, data=False)
 
-    # with open(dataset_name + '_test_pos.edgelist', 'w') as wf:
-    #     for edge in testing_pos_edges:
-    #         node_u, node_v = edge
-    #         wf.write('%s %s\n' % (node_u, node_v))
-    #     wf.close()
-
     node_num1, edge_num1 = len(G_train.nodes), len(G_train.edges)
     print('Training Graph: nodes:', node_num1, 'edges:', edge_num1)
     return G, G_train, testing_pos_edges, train_graph_filename
@@ -104,7 +96,7 @@ def generate_neg_edges(original_graph, testing_edges_num, seed):
 
 def load_embedding(embedding_file_name, node_list=None):
     with open(embedding_file_name) as f:
-        node_num, _ = f.readline().split()
+        node_num, emb_size = f.readline().split()
         print('Nodes with embedding: %s'%node_num)
         embedding_look_up = {}
         if node_list:
@@ -115,8 +107,16 @@ def load_embedding(embedding_file_name, node_list=None):
                     emb = [float(x) for x in vec[1:]]
                     emb = emb / np.linalg.norm(emb)
                     emb[np.isnan(emb)] = 0
-                    embedding_look_up[node_id] = list(emb)
-	    
+                    embedding_look_up[node_id] = np.array(emb)
+
+            # if len(node_list) != len(embedding_look_up):
+            #     diff_nodes=set(node_list).difference(set(embedding_look_up.keys()))
+            #     for node in diff_nodes:
+            #         emb = np.random.random((int(emb_size)))
+            #         emb = emb / np.linalg.norm(emb)
+            #         emb[np.isnan(emb)] = 0
+            #         embedding_look_up[node] = np.array(emb)
+
             assert len(node_list) == len(embedding_look_up)
         else:
             for line in f:
@@ -127,7 +127,6 @@ def load_embedding(embedding_file_name, node_list=None):
                 emb = emb / np.linalg.norm(emb)
                 emb[np.isnan(emb)] = 0
                 embedding_look_up[node_id] = list(emb)
-	    
             assert int(node_num) == len(embedding_look_up)
         f.close()
         return embedding_look_up

@@ -66,12 +66,12 @@ def _embedding_training(args, G_=None):
         os.remove("random_walks.txt")
         model.wv.save_word2vec_format(args.output)
     elif args.method == 'GAE':
-        # initialize necessary parameters
         model = gae_model(args)
-        # input the graph data
-        model.train(G_)
+        G = G_[0]
+        node_list = G_[1]
+        model.train(G)
         # save embeddings
-        model.save_embeddings(args.output)
+        model.save_embeddings(args.output, node_list)
     elif args.method == 'SVD':
         SVD_embedding(G_, args.output, size=args.dimensions)
     else:
