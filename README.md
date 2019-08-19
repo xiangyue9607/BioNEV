@@ -61,7 +61,8 @@ $ pip install -e .
 - --method, the name of embedding method 
 - --label-file, the label file for node classification.  
 - --weighted, true if the input graph is weighted. The default is False.
-- --eval-result-file, the filename of eval result (save the evaluation result into a file). Skip it if there is no need. 
+- --eval-result-file, the filename of eval result (save the evaluation result into a file). Skip it if there is no need.
+- --seed, random seed. The default is 0. 
 
 #### Specific Options
 
