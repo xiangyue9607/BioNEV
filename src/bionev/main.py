@@ -166,16 +166,15 @@ def main(args):
         )
 
         if args.task == 'link-prediction':
-            auc_roc, auc_pr, accuracy, f1, mcc = result
+            auc_roc, auc_pr, accuracy, f1 = result
             _results['results'] = dict(
                 auc_roc=auc_roc,
                 auc_pr=auc_pr,
                 accuracy=accuracy,
                 f1=f1,
-                mcc=mcc,
             )
         else:
-            accuracy, mcc, f1_micro, f1_macro = result
+            accuracy, f1_micro, f1_macro = result
             _results['results'] = dict(
                 accuracy=accuracy,
                 f1_micro=f1_micro,

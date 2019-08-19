@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, average_precision_score, f1_score, matthews_corrcoef, roc_auc_score
+from sklearn.metrics import accuracy_score, average_precision_score, f1_score, roc_auc_score
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.preprocessing import MultiLabelBinarizer
 
@@ -72,11 +72,10 @@ def LinkPrediction(embedding_look_up, original_graph, train_graph, test_pos_edge
     auc_pr = average_precision_score(y_test, y_pred_proba)
     accuracy = accuracy_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred)
-    mcc = matthews_corrcoef(y_test, y_pred)
     print('#' * 9 + ' Link Prediction Performance ' + '#' * 9)
-    print(f'AUC-ROC: {auc_roc:.3f}, AUC-PR: {auc_pr:.3f}, Accuracy: {accuracy:.3f}, F1: {f1:.3f}, MCC: {mcc:.3f}')
+    print(f'AUC-ROC: {auc_roc:.3f}, AUC-PR: {auc_pr:.3f}, Accuracy: {accuracy:.3f}, F1: {f1:.3f}')
     print('#' * 50)
-    return auc_roc, auc_pr, accuracy, f1, mcc
+    return auc_roc, auc_pr, accuracy, f1
 
 
 def NodeClassification(embedding_look_up, node_list, labels, testing_ratio, seed):
