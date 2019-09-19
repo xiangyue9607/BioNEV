@@ -1,13 +1,26 @@
 # BioNEV (Biomedical Network Embedding Evaluation)
 
 ## 1. Introduction
-This repository contains source code and datasets for paper ["Graph Embedding on Biomedical Networks: Methods, Applications, and Evaluations"](https://arxiv.org/pdf/1906.05017.pdf) (under review). This work aims to systematically evaluate recent advanced graph embedding techniques on biomedical tasks. We compile 5 benchmark datasets for 4 biomedical prediction tasks (see paper for details) and use them to evaluate 11 representative graph embedding methods selected from different categories:
+This repository contains source code and datasets for paper ["Graph Embedding on Biomedical Networks: Methods, Applications, and Evaluations"](https://arxiv.org/pdf/1906.05017.pdf) (accepted by **Bioinformatics**). This work aims to systematically evaluate recent advanced graph embedding techniques on biomedical tasks. We compile 5 benchmark datasets for 4 biomedical prediction tasks (see paper for details) and use them to evaluate 11 representative graph embedding methods selected from different categories:
 - 5 matrix factorization-based: Laplacian Eigenmap, SVD, Graph Factorization, HOPE, GraRep
 - 3 random walk-based: DeepWalk, node2vec, struc2vec
 - 3 neural network-based: LINE, SDNE, GAE
 
 The code can also be applied to graphs in other domains (e.g., social networks, citation networks). More experimental details can be found in [**Supplementary Materials**](Supplementary%20Materials.pdf).
-## 2. Dataset
+
+## 2. Pipeline
+![alt text](img/pipeline.png "Pipeline")
+
+Fig. 1: Pipeline for applying graph embedding methods to biomedical tasks. Low-dimensional node
+            representations are
+            first learned from biomedical networks by graph embedding methods and then used as features to build
+            specific classifiers for different tasks. For (a) matrix factorization-based methods, they use a data
+            matrix (e.g., adjacency matrix) as the input to learn embeddings through matrix factorization. For (b)
+            random walk-based methods, they first generate sequences of nodes through random walks and then feed the
+            sequences into the word2vec model to learn node representations. For (c)
+            neural network-based methods, their architectures and inputs vary from different models.
+
+## 3. Dataset
 Datasets used in the paper:
 ### Link Prediction
 - [CTD DDA](data/CTD_DDA) : a drug-disease association graph extracted from [Comparative Toxicogenomics Database](http://ctdbase.org/downloads/) 
@@ -31,7 +44,36 @@ Statistics:
 | Node Classification |   node2vec PPI | 3,890  |   76,584  |  1.01%  |    50   |
 |                     |   Mashup PPI   | 16,143 |  300,181  |  0.23%  |    28   |
 
-## 3. Code
+## 4. Pretrained Vectors
+We also release the best-performing pre-trained representations of nodes (e.g., drugs, diseases, proteins, UMLS concepts) on each dataset.
+These pre-trained vectors can be used as:
+
+- External representations to complement the biological features.
+In the paper, we showed that by adding the network embedding feature into an existing computational
+model
+for predicting drug-disease associations, the performance is further improved (Section 4.3 in the
+paper).
+
+- Initialized values of the embedding vectors before training. We can initialize the embedding vector
+for each node on a graph
+with its pre-trained embedding (e.g., by looking for the corresponding entity in pre-trained vocab
+look-up table rather than by random
+initialization, and then continue training various graph embedding methods as before (which is often
+referred
+to as “fine-tuning”). We conducted experiment with this "transfer learning" idea on
+the "CTD DDA" graph and showed the improvement (Section 5 in the paper).
+
+All the pretrained vectors can be downloaded [here](http://web.cse.ohio-state.edu/~yue.149/BioNEV/pretrained/). 
+The files are formatted as:
+
+    node_num, embedding_dimension
+    index_1, embedding vector 1
+    index_2, embedding vector 2
+    ...
+ 
+The corresponding index to node name (or their original ID) can be found in the each dataset directory.
+
+## 5. Code
 The graph embedding learning for Laplician Eigenmap, Graph Factorization, HOPE, GraRep, DeepWalk, node2vec, LINE, SDNE uses the code from [OpenNE](https://github.com/thunlp/OpenNE)
 The code of [struc2vec](https://github.com/leoribeiro/struc2vec) and [GAE](https://github.com/tkipf/gae) is from their authors. 
 To ensure different source code could run successfully in our framework, we modify part of their source code.
@@ -110,8 +152,8 @@ bionev --input ./data/Clin_Term_COOC/Clin_Term_COOC.edgelist \
        --weighted True
 ```
 
-## 4. Citation
-Please kindly cite the repo directly if you use the code or the datasets in this repo:
+## 6. Citation
+Please kindly cite the paper if you use the code, datasets or any results in this repo or in the paper:
 ```
 @article{yue2019graph,
   title={Graph Embedding on Biomedical Networks: Methods, Applications, and Evaluations},
@@ -120,3 +162,4 @@ Please kindly cite the repo directly if you use the code or the datasets in this
   year={2019}
 }
 ```
+Feel free to contact [Xiang Yue](https://xiangyue9607.github.io/) <yue.149 AT osu DOT edu> or [Huan Sun](http://web.cse.ohio-state.edu/~sun.397/) <sun.397 AT osu DOT edu> for any questions about the paper, datsaets, code and results.
