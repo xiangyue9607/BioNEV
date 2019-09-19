@@ -44,7 +44,7 @@ Statistics:
 | Node Classification |   node2vec PPI | 3,890  |   76,584  |  1.01%  |    50   |
 |                     |   Mashup PPI   | 16,143 |  300,181  |  0.23%  |    28   |
 
-## 4. Pretrained Vectors
+## 4. <span style="color:red">Pretrained Embddings</span>
 We also release the best-performing pre-trained representations of nodes (e.g., drugs, diseases, proteins, UMLS concepts) on each dataset.
 These pre-trained vectors can be used as:
 
