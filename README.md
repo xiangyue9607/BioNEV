@@ -8,6 +8,20 @@ This repository contains source code and datasets for paper ["Graph Embedding on
 
 The code can also be applied to graphs in other domains (e.g., social networks, citation networks). More experimental details can be found in [**Supplementary Materials**](Supplementary%20Materials.pdf).
 
+Please kindly cite the paper if you use the code, datasets or any results in this repo or in the paper:
+```
+@article{yue2020graph,
+  title={Graph embedding on biomedical networks: methods, applications and evaluations},
+  author={Yue, Xiang and Wang, Zhen and Huang, Jingong and Parthasarathy, Srinivasan and Moosavinasab, Soheil and Huang, Yungui and Lin, Simon M and Zhang, Wen and Zhang, Ping and Sun, Huan},
+  journal={Bioinformatics},
+  volume={36},
+  number={4},
+  pages={1241--1251},
+  year={2020},
+  publisher={Oxford University Press}
+}
+```
+
 ## 2. Pipeline
 ![alt text](img/pipeline.png "Pipeline")
 
@@ -152,14 +166,5 @@ bionev --input ./data/Clin_Term_COOC/Clin_Term_COOC.edgelist \
        --weighted True
 ```
 
-## 6. Citation
-Please kindly cite the paper if you use the code, datasets or any results in this repo or in the paper:
-```
-@article{yue2019graph,
-  title={Graph Embedding on Biomedical Networks: Methods, Applications, and Evaluations},
-  author={Yue, Xiang and Wang, Zhen and Huang, Jingong and Parthasarathy, Srinivasan and Moosavinasab, Soheil and Huang, Yungui and Lin, M. Simon and Zhang, Wen and Zhang, Ping and Sun, Huan},
-  journal={arXiv preprint arXiv:1906.05017},
-  year={2019}
-}
-```
+## 6. Contact
 Feel free to contact [Xiang Yue](https://xiangyue9607.github.io/) <yue.149 AT osu DOT edu> or [Huan Sun](http://web.cse.ohio-state.edu/~sun.397/) <sun.397 AT osu DOT edu> for any questions about the paper, datsaets, code and results.
